@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Datanalyze</title>
+  <style>
+    #dropfield {
+      display: inline-block;
+      background: #333;
+      margin: 25px;
+      padding: 20px 75px 20px 75px;
+      color: white;
+    }
+    #tablecont table {
+      width: 100%;
+    }
+    #tablecont table.sortable tbody tr td {
+      background: #fff;
+    }
+    #tablecont table.sortable thead tr:first-child td {
+      background: #eee;
+      font-weight: 800;
+      padding: 5px;
+    }
+    #tablecont table.sortable tbody tr:nth-child(2n) td {
+      background: #fca;
+    }
+  </style>
+  <script src="./upload.js"></script>
+  <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+  <script>
+    datanalyze.callback = function (data) {
+      var cont = document.getElementById('tablecont');
+      cont.innerHTML = data;
+      if (cont.hasChildNodes() !== null) {
+        sorttable.makeSortable(cont.childNodes[0]);
+        document.getElementById('dropfield').style.display = 'none';
+      }
+    };
+    window.onload = function() {
+      datanalyze.droppable(document.getElementById('dropfield'));
+    };
+  </script>
+</head>
+<body>
+  <div id="dropfield">
+    Dropdownfield
+  </div>
+  <div id="tablecont">
+    
+  </div>
+</body>
+</html>
